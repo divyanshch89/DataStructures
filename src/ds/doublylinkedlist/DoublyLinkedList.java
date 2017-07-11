@@ -85,9 +85,25 @@ public class DoublyLinkedList {
 		current.next = newNode;
 		return true;
 	}
-	//assume non-empty list
+
+	// assume non-empty list
 	public Node deleteKey(int key) {
-		Node newNode=new Node();
-		return newNode;
+		Node current = first;
+		while (current.data != key) {
+			current = current.next;
+			if (current == last)
+				return new Node();
+		}
+		if (current == first) {
+			first = first.next;
+		} else {
+			current.previous.next = current.next;
+			// current.next.previous = current.previous;
+		}
+		if (current == last)
+			last = current.previous;
+		else
+			current.next.previous = current.previous;
+		return current;
 	}
 }
